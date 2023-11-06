@@ -165,7 +165,7 @@ def get_all_combinations(user_inputs):
 
 
 def get_words_from_dictionary():
-    with open("words_dictionary.json") as f:
+    with open("words_dictionary.json.json") as f:
         letters_dict = json.load(f)
 
     return letters_dict
@@ -204,4 +204,3 @@ if __name__ == '__main__':
     letters_dictionary = get_words_from_dictionary()
     existing_words = compare_dictionary_to_combinations(letters_dictionary, all_possible_words)
     display_possible_words(existing_words)
-    pass
