@@ -7,7 +7,6 @@ import json
 
 def get_user_input():
     # read the letters which should be compared to the databank
-    # ToDo: check the v key input because the list appends stop instead of v
     letters = list()
     inp = ""
 
@@ -19,7 +18,7 @@ def get_user_input():
         else:
             print("Invalid input")
 
-    letters = np.unique(letters)
+    letters = throw_out_similar(letters)
     print(letters[:-1])
 
     # read which letters must be contained in the words the user gets
@@ -34,7 +33,7 @@ def get_user_input():
         else:
             print("Invalid input")
 
-    required_letters = np.unique(required_letters)
+    required_letters = throw_out_similar(required_letters)
     print(required_letters[:-1])
 
     # get a boolean which tells you if letters can occur multiple times
@@ -165,7 +164,7 @@ def get_all_combinations(user_inputs):
 
 
 def get_words_from_dictionary():
-    with open("words_dictionary.json.json") as f:
+    with open("wordlist.json") as f:
         letters_dict = json.load(f)
 
     return letters_dict
@@ -196,6 +195,18 @@ def compare_dictionary_to_combinations(dictionary, possible_words):
 def display_possible_words(words_to_display):
     for words in words_to_display:
         print("One Possibility:" + " " + words)
+
+
+def throw_out_similar(unsorted_list):
+    seen_letters = set()
+    sorted_letters = list()
+
+    for letters in unsorted_list:
+        if letters not in seen_letters:
+            sorted_letters.append(letters)
+            seen_letters.add(letters)
+
+    return sorted_letters
 
 
 if __name__ == '__main__':
