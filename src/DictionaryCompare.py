@@ -83,7 +83,7 @@ def get_user_input():
 
     # store the above date in a list and return it for further process
     all_user_inputs = [letters[:-1], required_letters[:-1], multiple_occasion, cnt_max_letters, cnt_min_letters]
-    print(all_user_inputs)
+    # print(all_user_inputs)
 
     return all_user_inputs
 
@@ -101,7 +101,7 @@ def get_all_combinations(user_inputs):
         for times in range(min_letters, max_letters + 1):
             all_permutations.extend(list(itertools.permutations(letters, r=times)))
 
-        print(all_permutations)
+        # print(all_permutations)
 
         # sorting out the permutations which do not contain the required letters the user wanted
         required_letters = user_inputs[1]
@@ -114,18 +114,18 @@ def get_all_combinations(user_inputs):
                     permutations_to_delete.append(permutations)
                     break
 
-        print(permutations_to_delete)
+        # print(permutations_to_delete)
 
         for items in permutations_to_delete:
             for all_permutation in all_permutations:
-                print(items)
-                print("--")
-                print(all_permutation)
+                # print(items)
+                # print("--")
+                # print(all_permutation)
                 if items == all_permutation:
                     all_permutations.remove(all_permutation)
                     break
 
-        print(all_permutations)
+        # print(all_permutations)
         return all_permutations
     elif user_inputs[2]:
 
@@ -135,7 +135,7 @@ def get_all_combinations(user_inputs):
         for items in range(min_letters, max_letters + 1):
             all_possibilities.extend(list(itertools.product(letters, repeat=items)))
 
-        print(all_possibilities)
+        # print(all_possibilities)
 
         # sorting out the permutations which do not contain the required letters the user wanted
         required_letters = user_inputs[1]
@@ -148,18 +148,18 @@ def get_all_combinations(user_inputs):
                     possibilities_to_delete.append(possibilities)
                     break
 
-        print(possibilities_to_delete)
+        # print(possibilities_to_delete)
 
         for items in possibilities_to_delete:
             for all_possibility in all_possibilities:
-                print(items)
-                print("--")
-                print(all_possibility)
+                # print(items)
+                # print("--")
+                # print(all_possibility)
                 if items == all_possibility:
                     all_possibilities.remove(all_possibility)
                     break
 
-        print(all_possibilities)
+        # print(all_possibilities)
         return all_possibilities
 
 
@@ -188,7 +188,7 @@ def compare_dictionary_to_combinations(dictionary, possible_words):
         if words in english_dictionary:
             occurring_words.append(words)
 
-    print(occurring_words)
+    # print(occurring_words)
     return occurring_words
 
 
@@ -207,11 +207,3 @@ def throw_out_similar(unsorted_list):
             seen_letters.add(letters)
 
     return sorted_letters
-
-
-if __name__ == '__main__':
-    inputs_from_user = get_user_input()
-    all_possible_words = get_all_combinations(inputs_from_user)
-    letters_dictionary = get_words_from_dictionary()
-    existing_words = compare_dictionary_to_combinations(letters_dictionary, all_possible_words)
-    display_possible_words(existing_words)
