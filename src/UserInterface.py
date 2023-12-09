@@ -9,9 +9,10 @@ def read_inputs():
     root.geometry("1000x500")
     letters = list()
     req_letters = list()
-    all_inputs = list()
+    all_user_inputs = list()
 
     def save_letters():
+
         inp = let_inp.get()
 
         if len(inp) < 2 and inp.isalpha():
@@ -23,7 +24,6 @@ def read_inputs():
             let_inp.delete(0, 'end')
 
         new_letters = dic.throw_out_similar(letters)
-        print(new_letters)
         return new_letters
 
     def save_req_letters():
@@ -38,7 +38,6 @@ def read_inputs():
             req_let_inp.delete(0, 'end')
 
         new_req_letters = dic.throw_out_similar(req_letters)
-        print(new_req_letters)
         return new_req_letters
 
     def get_scale_max():
@@ -108,7 +107,12 @@ def read_inputs():
     min_let_btn.pack()
 
     def get_all_user_inputs():
-        all_inputs.append()
+        all_user_inputs.append(save_letters())
+        all_user_inputs.append(save_req_letters())
+        all_user_inputs.append(sel())
+        all_user_inputs.append(get_scale_max())
+        all_user_inputs.append(get_scale_min())
+        print(all_user_inputs)
 
     fin_btn = ttk.Button(master=fin_btn_frm, text="Finish the input", command=get_all_user_inputs)
     fin_btn.pack()
@@ -121,3 +125,4 @@ def read_inputs():
     fin_btn_frm.grid()
 
     root.mainloop()
+    return all_user_inputs
