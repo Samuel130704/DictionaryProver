@@ -9,6 +9,7 @@ def read_inputs():
     root.geometry("1000x500")
     letters = list()
     req_letters = list()
+    all_inputs = list()
 
     def save_letters():
         inp = let_inp.get()
@@ -23,6 +24,7 @@ def read_inputs():
 
         new_letters = dic.throw_out_similar(letters)
         print(new_letters)
+        return new_letters
 
     def save_req_letters():
         inp = req_let_inp.get()
@@ -37,10 +39,22 @@ def read_inputs():
 
         new_req_letters = dic.throw_out_similar(req_letters)
         print(new_req_letters)
+        return new_req_letters
 
     def get_scale_max():
         cur_value = int(max_let_scale.get())
         max_let_lbl2.configure(text=cur_value)
+        return cur_value
+
+    def get_scale_min():
+        cur_value = int(min_let_scale.get())
+        min_let_lbl2.configure(text=cur_value)
+        return cur_value
+
+    def sel():
+        selection = bool(var.get())
+        print(selection)
+        return selection
 
     let_frm = ttk.Frame()
     req_let_frm = ttk.Frame()
@@ -67,11 +81,12 @@ def read_inputs():
     req_let_lbl2 = ttk.Label(master=req_let_frm)
     req_let_lbl2.pack()
 
+    var = tk.IntVar()
     occ_lbl1 = ttk.Label(master=occ_frm, text="Can letters occur multiple times?")
     occ_lbl1.pack()
-    occ_btn1 = ttk.Radiobutton(master=occ_frm, text="Yes")
+    occ_btn1 = ttk.Radiobutton(master=occ_frm, text="Yes", variable=var, value=True, command=sel)
     occ_btn1.pack()
-    occ_btn2 = ttk.Radiobutton(master=occ_frm, text="No")
+    occ_btn2 = ttk.Radiobutton(master=occ_frm, text="No", variable=var, value=False, command=sel)
     occ_btn2.pack()
 
     max_let_lbl1 = ttk.Label(master=max_let_frm, text="Whats the maximum amount of letters")
@@ -83,9 +98,26 @@ def read_inputs():
     max_let_btn = ttk.Button(master=max_let_frm, text="Show value", command=get_scale_max)
     max_let_btn.pack()
 
+    min_let_lbl1 = ttk.Label(master=min_let_frm, text="Whats the minimum amount of letters")
+    min_let_lbl1.pack()
+    min_let_scale = ttk.Scale(master=min_let_frm, from_=0, to=20)
+    min_let_scale.pack()
+    min_let_lbl2 = ttk.Label(master=min_let_frm)
+    min_let_lbl2.pack()
+    min_let_btn = ttk.Button(master=min_let_frm, text="Show value", command=get_scale_min)
+    min_let_btn.pack()
+
+    def get_all_user_inputs():
+        all_inputs.append()
+
+    fin_btn = ttk.Button(master=fin_btn_frm, text="Finish the input", command=get_all_user_inputs)
+    fin_btn.pack()
+
     let_frm.grid()
     req_let_frm.grid()
     occ_frm.grid()
     max_let_frm.grid()
+    min_let_frm.grid()
+    fin_btn_frm.grid()
 
     root.mainloop()
