@@ -137,8 +137,3 @@ fin_btn_frm.grid()
 def read_inputs():
     root.mainloop()
     return all_user_inputs
-
-
-def label_results(words):
-
-    fin_lbl1.configure(text=words)

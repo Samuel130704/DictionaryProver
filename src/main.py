@@ -1,5 +1,3 @@
-import tkinter as tk
-from tkinter import ttk
 import DictionaryCompare as dic
 import UserInterface as user
 
@@ -9,17 +7,6 @@ if __name__ == '__main__':
     letters_dictionary = dic.get_words_from_dictionary()
     existing_words = dic.compare_dictionary_to_combinations(letters_dictionary, all_possible_words)
     dic.display_possible_words(existing_words)
-
-    user.label_results()
-
-
-
-
-
-
-
-
-
 
     # for items in button.keys():
     #     print(items, ":", button[items])
