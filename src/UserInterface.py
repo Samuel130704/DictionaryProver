@@ -119,6 +119,11 @@ def get_all_user_inputs():
     all_user_inputs.append(get_scale_max())
     all_user_inputs.append(get_scale_min())
     print(all_user_inputs)
+    all_possible_words = dic.get_all_combinations(all_user_inputs)
+    letters_dictionary = dic.get_words_from_dictionary()
+    existing_words = dic.compare_dictionary_to_combinations(letters_dictionary, all_possible_words)
+    dic.display_possible_words(existing_words)
+    fin_lbl1.configure(text=existing_words)
 
 
 fin_btn = ttk.Button(master=fin_btn_frm, text="Finish the input", command=get_all_user_inputs)
@@ -136,4 +141,3 @@ fin_btn_frm.grid()
 
 def read_inputs():
     root.mainloop()
-    return all_user_inputs
