@@ -60,12 +60,12 @@ def sel():
     return selection
 
 
-let_frm = ttk.Frame()
-req_let_frm = ttk.Frame()
-occ_frm = ttk.Frame()
-max_let_frm = ttk.Frame()
-min_let_frm = ttk.Frame()
-fin_btn_frm = ttk.Frame()
+let_frm = ttk.Frame(padding=15)
+req_let_frm = ttk.Frame(padding=15)
+occ_frm = ttk.Frame(padding=15)
+max_let_frm = ttk.Frame(padding=15)
+min_let_frm = ttk.Frame(padding=15)
+fin_btn_frm = ttk.Frame(padding=15)
 
 let_lbl1 = ttk.Label(master=let_frm, text="Type the letters you want in your words")
 let_lbl1.pack()
@@ -122,7 +122,6 @@ def get_all_user_inputs():
     all_possible_words = dic.get_all_combinations(all_user_inputs)
     letters_dictionary = dic.get_words_from_dictionary()
     existing_words = dic.compare_dictionary_to_combinations(letters_dictionary, all_possible_words)
-    dic.display_possible_words(existing_words)
 
     for words in existing_words:
         fin_lbl1.insert('end', words)
@@ -133,12 +132,12 @@ fin_btn.pack()
 fin_lbl1 = tk.Listbox(master=fin_btn_frm)
 fin_lbl1.pack()
 
-let_frm.grid()
-req_let_frm.grid()
-occ_frm.grid()
-max_let_frm.grid()
-min_let_frm.grid()
-fin_btn_frm.grid()
+let_frm.grid(row=0, column=0)
+req_let_frm.grid(row=0, column=1)
+occ_frm.grid(row=0, column=2)
+max_let_frm.grid(row=1, column=1)
+min_let_frm.grid(row=1, column=2)
+fin_btn_frm.grid(row=3, column=1)
 
 
 def read_inputs():
