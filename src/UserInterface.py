@@ -123,12 +123,14 @@ def get_all_user_inputs():
     letters_dictionary = dic.get_words_from_dictionary()
     existing_words = dic.compare_dictionary_to_combinations(letters_dictionary, all_possible_words)
     dic.display_possible_words(existing_words)
-    fin_lbl1.configure(text=existing_words)
+
+    for words in existing_words:
+        fin_lbl1.insert('end', words)
 
 
 fin_btn = ttk.Button(master=fin_btn_frm, text="Finish the input", command=get_all_user_inputs)
 fin_btn.pack()
-fin_lbl1 = ttk.Label(master=fin_btn_frm)
+fin_lbl1 = tk.Listbox(master=fin_btn_frm)
 fin_lbl1.pack()
 
 let_frm.grid()
